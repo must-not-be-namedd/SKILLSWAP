@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkillSwap - Simplified UI</title>
+  <title>SkillSwap - Swipe</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #e4cffb, #c5a3f5);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #e3e3e3);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -20,15 +21,16 @@
       width: 320px;
       padding: 20px;
       border-radius: 16px;
-      background: linear-gradient(145deg, #ffffff, #f0e5fa);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      background: #ffffff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
       text-align: center;
-      transition: all 0.3s ease;
+      color: #333;
+      border: 1px solid #ddd;
     }
 
     .card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
     }
 
     .profile-pic {
@@ -36,58 +38,50 @@
       height: 100px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 15px;
-      border: 3px solid #9b59b6;
+      margin-bottom: 10px;
+      border: 3px solid #667eea;
     }
 
     .name {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
-      color: #6c3483;
-      margin-bottom: 8px;
+      color: #333;
     }
 
     .skills {
       font-size: 16px;
-      color: #5a5a5a;
-      margin-bottom: 20px;
+      margin-top: 8px;
+      color: #555;
     }
 
     .buttons {
+      margin-top: 20px;
       display: flex;
       justify-content: space-between;
     }
 
     .btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 16px;
       border: none;
       cursor: pointer;
-      font-size: 18px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      transform: scale(1.1);
+      transition: background 0.3s ease;
+      font-weight: 500;
+      color: #fff;
+      outline: none;
     }
 
     .reject-btn {
-      background: #ff6b6b;
-      color: #fff;
+      background: #ff4b5c;
     }
 
     .reject-btn:hover {
-      background: #ff4d4d;
+      background: #e43f52;
     }
 
     .accept-btn {
       background: #4caf50;
-      color: #fff;
     }
 
     .accept-btn:hover {
@@ -97,23 +91,35 @@
 </head>
 <body>
   <div class="card">
-    <img src="liam.jpg" alt="Profile Picture of Liam" class="profile-pic" />
-    <div class="name">Liam Payne</div>
-    <div class="skills">Skills: Singing, Songwriting, Guitar</div>
+    <img src="https://source.unsplash.com/100x100/?person" alt="Profile Pic" class="profile-pic" />
+    <div class="name">Alex Johnson</div>
+    <div class="skills">Skills: Python, Java, AI</div>
     <div class="buttons">
-      <button class="btn reject-btn" onclick="nextProfile()">✖</button>
-      <button class="btn accept-btn" onclick="showMatch()">✔</button>
+      <button class="btn reject-btn" onclick="nextProfile()">✖️</button>
+      <button class="btn accept-btn" onclick="showMatch()">✔️</button>
     </div>
   </div>
 
   <script>
     function nextProfile() {
-      // Example logic for switching profiles (this can be extended further)
-      alert('Next profile will be loaded.');
+      // Simulate a new profile (replace with dynamic content later)
+      const names = ["Alex Johnson", "Emma Stone", "Liam Smith", "Olivia Brown"];
+      const skills = ["Python, Java, AI", "React, JavaScript, CSS", "C++, Data Science", "UI/UX, Figma"];
+      const images = [
+        "alex.jpg",
+        "emma.jpg",
+        "liam.jpg",
+        "olivia.jpg"
+      ];
+
+      const index = Math.floor(Math.random() * names.length);
+
+      document.querySelector('.name').textContent = names[index];
+      document.querySelector('.skills').textContent = `Skills: ${skills[index]}`;
+      document.querySelector('.profile-pic').src = images[index];
     }
 
     function showMatch() {
-      // Redirect to match.html
       window.location.href = "match.html";
     }
   </script>
