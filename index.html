@@ -97,14 +97,30 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 Skill Swap. All rights reserved.</p>
-    <p>Follow us on <a href="#">Social Media</a></p>
-  </footer>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background-color: #77639a; color: white;">
+        <!-- Feedback Form (Left Side) -->
+        <div style="flex: 1;">
+            <h2>Give Us Your Feedback</h2>
+            <input type="text" id="name" placeholder="Your Name" required style="width: 70%; padding: 10px; margin: 5px 0; border: 1px solid #8771ab; border-radius: 5px; background-color: #ffffff; color: black;">
+            <input type="email" id="email" placeholder="Your Email" required style="width: 70%; padding: 10px; margin: 5px 0; border: 1px solid #8771ab; border-radius: 5px; background-color: #ffffff; color: balck;">
+            <textarea id="feedback" placeholder="Your Feedback" rows="4" required style="width: 70%; padding: 10px; margin: 5px 0; border: 1px solid #8771ab; border-radius: 5px; background-color: #ffffff; color: black;"></textarea>
+            <button onclick="sendFeedback()" 
+            style="width: 30%; background-color: #2c437c; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+            Send
+        </button>
+        </div>
 
+        <!-- Other Footer Info (Right Side) -->
+        <div style="flex: 1; text-align: right;">
+            <p>&copy; 2025 Skill Swap. All rights reserved.</p>
+            <p>Follow us on <a href="#" style="color: #000000;">Social Media</a></p>
+        </div>
+        
+    </div>
+</footer>
   <div class="chat-widget" onclick="alert('Chat functionality coming soon!')">
     Chat with us
   </div>
-
   <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</div>
 
   <script src="script.js"></script>
