@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skill Swap - Login & Signup</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      position: relative;
+      width: 350px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+    h2 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    .input-group input:focus {
+      border-color: #667eea;
+      outline: none;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      background: #667eea;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn:hover {
+      background: #556cd6;
+      transform: translateY(-3px);
+    }
+    .toggle {
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+    .toggle a {
+      color: #667eea;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .toggle a:hover {
+      color: #ff6b6b;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="auth-container">
+    <h2 id="auth-title">Login</h2>
+    <form id="auth-form" onsubmit="handleAuth(event)">
+      <div class="input-group">
+        <input type="email" id="email" placeholder="Email" required>
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <p class="toggle">Don't have an account? <a onclick="toggleAuth()">Sign Up</a></p>
+    </form>
+  </div>
+  
+  <script>
+    let isLogin = true;  // Track whether the form is in login or sign-up mode
+
+    function toggleAuth() {
+      const title = document.getElementById("auth-title");
+      const form = document.getElementById("auth-form");
+
+      if (isLogin) {
+        title.textContent = "Sign Up";
+        form.innerHTML = `
+          <div class="input-group">
+            <input type="text" id="name" placeholder="Full Name" required>
+          </div>
+          <div class="input-group">
+            <input type="email" id="email" placeholder="Email" required>
+          </div>
+          <div class="input-group">
+            <input type="password" id="password" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn">Sign Up</button>
+          <p class="toggle">Already have an account? <a onclick="toggleAuth()">Login</a></p>
+        `;
+        isLogin = false;
+      } else {
+        title.textContent = "Login";
+        form.innerHTML = `
+          <div class="input-group">
+            <input type="email" id="email" placeholder="Email" required>
+          </div>
+          <div class="input-group">
+            <input type="password" id="password" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn">Login</button>
+          <p class="toggle">Don't have an account? <a onclick="toggleAuth()">Sign Up</a></p>
+        `;
+        isLogin = true;
+      }
+    }
+
+    function handleAuth(event) {
+      event.preventDefault(); // Prevent form submission refresh
+
+      if (isLogin) {
+        // Redirect to categories.html on login
+        window.location.href = "categories.html";
+      } else {
+        // Redirect to index.html on sign-up
+        window.location.href = "index.html";
+      }
+    }
+  </script>
+</body>
+</html>
