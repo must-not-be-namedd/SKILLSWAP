@@ -1,0 +1,106 @@
+<!-- Chat Modal -->
+<div id="chatModal" class="chat-modal" style="display: none;">
+    <div class="chat-header">
+      <h3>Chat</h3>
+      <button onclick="closeChat()">X</button>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <!-- Messages will appear here -->
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="chatInput" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+  
+  <style>
+    .chat-modal {
+      position: fixed;
+      bottom: 0;
+      right: 20px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .chat-header {
+      padding: 10px;
+      background: #007bff;
+      color: #fff;
+      border-radius: 10px 10px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .chat-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+    }
+  
+    .chat-footer {
+      display: flex;
+      padding: 10px;
+    }
+  
+    #chatInput {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  
+    button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+  
+  <script>
+    const chatMessages = [];
+  
+    function openChat() {
+      document.getElementById('chatModal').style.display = 'block';
+    }
+  
+    function closeChat() {
+      document.getElementById('chatModal').style.display = 'none';
+    }
+  
+    function sendMessage() {
+      const chatInput = document.getElementById('chatInput');
+      const message = chatInput.value.trim();
+  
+      if (message) {
+        // Add message to the chat
+        chatMessages.push({ sender: 'User', text: message });
+        displayMessages();
+        chatInput.value = '';
+      }
+  
+      // Send the message to the server
+      fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+    }
+  
+    function displayMessages() {
+      const chatBody = document.getElementById('chatBody');
+      chatBody.innerHTML = chatMessages
+        .map(msg => `<p><strong>${msg.sender}:</strong> ${msg.text}</p>`)
+        .join('');
+    }
+  </script>
+  

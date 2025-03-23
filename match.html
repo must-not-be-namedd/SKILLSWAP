@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSwap - Match</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      width: 800px;
+    }
+
+    /* Chat Window */
+    .chat-window {
+      flex: 1;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #fff;
+      max-width: 70%;
+    }
+
+    .sent {
+      align-self: flex-end;
+      background: #667eea;
+    }
+
+    .received {
+      align-self: flex-start;
+      background: #444;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .send-btn {
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      background: #4caf50;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .send-btn:hover {
+      background: #45a049;
+    }
+
+    /* Booking Section */
+    .booking-section {
+      flex-basis: 320px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    .booking-section h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 14px;
+      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transition: border 0.2s ease;
+    }
+
+    .input-field:focus {
+      border-color: #667eea;
+    }
+
+    .book-btn {
+      width: 100%;
+      background-color: #667eea;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 8px;
+    }
+
+    .book-btn:hover {
+      background-color: #5567c1;
+    }
+
+    .message-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .success {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    .error {
+      background-color: #f44336;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Chat Window -->
+    <div class="chat-window" id="chatWindow">
+      <div class="message received">Hey there! Interested in a coding session?</div>
+      <div class="message sent">Yes, let's set it up!</div>
+      <div class="input-area">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button class="send-btn" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <!-- Booking Section -->
+    <div class="booking-section">
+      <h3>Book a Session</h3>
+      <input type="date" id="date" class="input-field" />
+      <input type="time" id="time" class="input-field" />
+      <button class="book-btn" onclick="bookSession()">Book Now</button>
+      <div id="messageBox" class="message-box" style="display: none;"></div>
+    </div>
+  </div>
+
+  <script>
+    // Function to handle sending messages
+    function sendMessage() {
+      const chatInput = document.getElementById("chatInput");
+      const message = chatInput.value.trim();
+      const chatWindow = document.getElementById("chatWindow");
+
+      if (message !== "") {
+        // Create new message
+        const newMessage = document.createElement("div");
+        newMessage.className = "message sent";
+        newMessage.textContent = message;
+        chatWindow.insertBefore(newMessage, chatWindow.querySelector(".input-area"));
+
+        // Clear input after sending
+        chatInput.value = "";
+
+        // Auto-reply after 1 second (for demo)
+        setTimeout(() => {
+          const reply = document.createElement("div");
+          reply.className = "message received";
+          reply.textContent = "Got it! Looking forward to our session.";
+          chatWindow.insertBefore(reply, chatWindow.querySelector(".input-area"));
+          chatWindow.scrollTop = chatWindow.scrollHeight;
+        }, 1000);
+      }
+    }
+
+    // Function to handle booking a session
+    function bookSession() {
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const messageBox = document.getElementById("messageBox");
+
+      if (date && time) {
+        messageBox.style.display = "block";
+        messageBox.className = "message-box success";
+        messageBox.textContent = Session booked on ${date} at ${time}!;
+      } else {
+        messageBox.style.display = "block";
+        messageBox.className = "message-box error";
+        messageBox.textContent = "Please select a valid date and time.";
+      }
+    }
+  </script>
+</body>
+</html>
