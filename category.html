@@ -6,11 +6,47 @@
   <title>Explore Skills - Skill Swap</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 10px 40px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeInDown 1s ease-out;
+}
+header h1 {
+  font-size: 2.2rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 30px;
+  position: relative;
+}
+nav ul li a {
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ff6b6b;
+  border-bottom: 2px solid #ff6b6b;
+}
+
     #browse{
       color:#EC5228;
       font-size:40px;
       text-align:center;
-      
     }
     .search-section {
       text-align: center;
@@ -42,6 +78,7 @@
       color: white;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s;
+      cursor: pointer;
     }
     .category-card:hover {
       transform: scale(1.05);
@@ -57,138 +94,96 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>Skill Swap</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<!-- Header -->
+<header>
+  <h1>Skill Swap</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <!-- Search Bar -->
-  <section class="search-section">
-    <h2>Find a Skill to Learn</h2>
-    <input type="text" id="search-bar" placeholder="Search for skills...">
-  </section>
+<!-- Search Bar -->
+<section class="search-section">
+  <h2>Find a Skill to Learn</h2>
+  <input type="text" id="search-bar" placeholder="Search for skills...">
+</section>
 
-  <!-- Skill Categories -->
-  <section class="skill-categories">
-    <h2 id="browse">Browse by Category</h2>
-   
-    <!-- Programming & Tech -->
-    <h3 >PROGRAMMING & TECH</h3>
-    <div class="category-grid">
-      <div class="category-card">
-        <img src="https://www.freeiconspng.com/uploads/c--logo-icon-0.png" alt="C++">
-        <p>C++</p>
-      </div>
-      <div class="category-card">
-        <img src="https://static.vecteezy.com/system/resources/previews/022/100/945/original/java-logo-transparent-free-png.png" alt="Java">
-        <p>Java</p>
-      </div>
-      <div class="category-card">
-        <img src="https://static.vecteezy.com/system/resources/previews/012/697/295/non_2x/3d-python-programming-language-logo-free-png.png" alt="Python">
-        <p>Python</p>
-      </div>
-      <div class="category-card">
-        <img src="https://www.dharmishi.com/img/vectors/developer.png   " alt="Web Development">
-        <p>Web Development</p>
-      </div>
-      <div class="category-card">
-        <img src="https://icon-library.com/images/cyber-security-icon/cyber-security-icon-5.jpg" alt="Cybersecurity">
-        <p>Cybersecurity</p>
-      </div>
-      <div class="category-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/4824/4824797.png" alt="Data Science">
-        <p>Data Science</p>
-      </div>
+<!-- Skill Categories -->
+<section class="skill-categories">
+  <h2 id="browse">Browse by Category</h2>
+  
+  <!-- Programming & Tech -->
+  <h3>PROGRAMMING & TECH</h3>
+  <div class="category-grid">
+    <div class="category-card" onclick="selectCategory('C++')">
+      <img src="https://www.freeiconspng.com/uploads/c--logo-icon-0.png" alt="C++">
+      <p>C++</p>
     </div>
-
-    <!-- Creative Skills -->
-    <h3>CREATIVE & DESIGN</h3>
-    <div class="category-grid">
-      <div class="category-card">
-        <img src="https://www.vhv.rs/dpng/f/284-2848921_abstract-designs-png.png" alt="Graphic Design">
-        <p>Graphic Design</p>
-      </div>
-      <div class="category-card">
-        <img src="https://img00.deviantart.net/a771/i/2015/010/8/3/video_editor_icon_by_topher147-d8ddg2g.png" alt="Video Editing">
-        <p>Video Editing</p>
-      </div>
-      <div class="category-card">
-        <img src="https://editzstock.com/wp-content/uploads/2022/05/Dslr-camera-Photography-Logo-PNG-Free-Download-1.png" alt="Photography">
-        <p>Photography</p>
-      </div>
-      <div class="category-card">
-        <img src="https://www.freepnglogos.com/uploads/music-logo-icon-png-31.png">
-        <p>Music Production</p>
-      </div>
-      <div class="category-card">
-        <img src="https://cdn3d.iconscout.com/3d/premium/thumb/ui-ux-design-5996826-4972885.png" alt="UI/UX Design">
-        <p>UI/UX Design</p>
-      </div>
+    <div class="category-card" onclick="selectCategory('Java')">
+      <img src="https://static.vecteezy.com/system/resources/previews/022/100/945/original/java-logo-transparent-free-png.png" alt="Java">
+      <p>Java</p>
     </div>
-
-    <!-- Business & Marketing -->
-    <h3>BUSINESS & MARKETING</h3>
-    <div class="category-grid">
-      <div class="category-card">
-        <img src="https://www.pngplay.com/wp-content/uploads/9/Marketing-No-Background.png" alt="Marketing">
-        <p>Marketing</p>
-      </div>
-      <div class="category-card">
-        <img src="https://www.pngkey.com/png/full/815-8158398_digital-marketing-png-icon.png">
-        <p>Social Media Marketing</p>
-      </div>
-      <div class="category-card">
-        <img src="https://tse1.mm.bing.net/th?id=OIP.RZBduE5Bc5rAuaBoaWWlXAHaFR&pid=Api&P=0&h=180" alt="Copywriting">
-        <p>Copywriting</p>
-      </div>
-      <div class="category-card">
-        <img src="http://www.pngall.com/wp-content/uploads/5/Digital-Marketing-PNG-Transparent-HD-Photo.png" alt="Digital Advertising">
-        <p>Digital Advertising</p>
-      </div>
-      <div class="category-card">
-        <img src="https://tse2.mm.bing.net/th?id=OIP.ajHR9Viocw1TiSg3cr6VmwHaD4&pid=Api&P=0&h=180" alt="E-commerce">
-        <p>E-commerce</p>
-      </div>
+    <div class="category-card" onclick="selectCategory('Python')">
+      <img src="https://static.vecteezy.com/system/resources/previews/012/697/295/non_2x/3d-python-programming-language-logo-free-png.png" alt="Python">
+      <p>Python</p>
     </div>
-
-    <!-- Language & Communication -->
-    <h3>LANGUAGE & COMMUNICATION</h3>
-    <div class="category-grid">
-      <div class="category-card">
-        <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/17300766-aprendendo-ingles-doodle-set-escola-de-idiomas-em-estilo-de-desenho-curso-online-de-ensino-de-idiomas-ilustracaoial-desenhada-a-mao-isolada-no-fundo-branco-vetor.jpg" alt="English Language">
-        <p>English Language</p>
-      </div>
-      <div class="category-card">
-        <img src="https://webstockreview.net/images/language-clipart-8.png" alt="Spanish Language">
-        <p>Spanish Language</p>
-      </div>
-      <div class="category-card">
-        <img src="https://clipart-library.com/8300/2368/speaking-head-emoji-clipart-md.png" alt="Public Speaking">
-        <p>Public Speaking</p>
-      </div>
-      <div class="category-card">
-        <img src="https://www.pngall.com/wp-content/uploads/8/Pen-Handwriting-PNG-Clipart.png" alt="Writing">
-        <p>Writing</p>
-      </div>
-      <div class="category-card">
-        <img src="https://static.vecteezy.com/system/resources/previews/016/314/871/large_2x/language-translation-icon-graphic-language-translation-with-transparent-background-free-png.png" alt="Translation">
-        <p>Translation</p>
-      </div>
+    <div class="category-card" onclick="selectCategory('Web Development')">
+      <img src="https://www.dharmishi.com/img/vectors/developer.png" alt="Web Development">
+      <p>Web Development</p>
     </div>
-  </section>
+    <div class="category-card" onclick="selectCategory('Cybersecurity')">
+      <img src="https://icon-library.com/images/cyber-security-icon/cyber-security-icon-5.jpg" alt="Cybersecurity">
+      <p>Cybersecurity</p>
+    </div>
+    <div class="category-card" onclick="selectCategory('Data Science')">
+      <img src="https://cdn-icons-png.flaticon.com/512/4824/4824797.png" alt="Data Science">
+      <p>Data Science</p>
+    </div>
+  </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Skill Swap. All rights reserved.</p>
-  </footer>
+  <!-- Creative & Design -->
+  <h3>CREATIVE & DESIGN</h3>
+  <div class="category-grid">
+    <div class="category-card" onclick="selectCategory('Graphic Design')">
+      <img src="https://www.vhv.rs/dpng/f/284-2848921_abstract-designs-png.png" alt="Graphic Design">
+      <p>Graphic Design</p>
+    </div>
+    <div class="category-card" onclick="selectCategory('UI/UX Design')">
+      <img src="https://cdn3d.iconscout.com/3d/premium/thumb/ui-ux-design-5996826-4972885.png" alt="UI/UX Design">
+      <p>UI/UX Design</p>
+    </div>
+  </div>
 
-  <script src="script.js"></script>
+  <!-- Business & Marketing -->
+  <h3>BUSINESS & MARKETING</h3>
+  <div class="category-grid">
+    <div class="category-card" onclick="selectCategory('Marketing')">
+      <img src="https://www.pngplay.com/wp-content/uploads/9/Marketing-No-Background.png" alt="Marketing">
+      <p>Marketing</p>
+    </div>
+    <div class="category-card" onclick="selectCategory('E-commerce')">
+      <img src="https://tse2.mm.bing.net/th?id=OIP.ajHR9Viocw1TiSg3cr6VmwHaD4&pid=Api&P=0&h=180" alt="E-commerce">
+      <p>E-commerce</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Skill Swap. All rights reserved.</p>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  function selectCategory(category) {
+    // Redirect to swipe.html with the selected category as a query parameter
+    window.location.href = `swipe.html?category=${encodeURIComponent(category)}`;
+  }
+</script>
+
 </body>
 </html>
