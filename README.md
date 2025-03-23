@@ -28,7 +28,7 @@
 
 This diagram explains the user journey in the **Skill Swap Platform**:  
 
-![User Flow](https://raw.githubusercontent.com/your-username/your-repository/main/userFlow.jpg)
+![User Flow]([https://raw.githubusercontent.com/your-username/your-repository/main/userFlow.jpg](https://github.com/must-not-be-namedd/SKILLSWAP/blob/main/userFlow.jpg))
 
 ---
 
